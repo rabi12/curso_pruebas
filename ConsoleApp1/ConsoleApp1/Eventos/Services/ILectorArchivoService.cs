@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Services
 {
-    interface ILectorArchivoService
+    public interface ILectorArchivoService
     {
          List<string[]> leerArchivo(string ruta);
     }

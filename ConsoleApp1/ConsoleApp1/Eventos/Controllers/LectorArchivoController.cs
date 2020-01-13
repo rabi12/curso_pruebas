@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Controllers
 {
-    class LectorArchivoController
+    public class LectorArchivoController : ILectorArchivoController
     {
         ILectorArchivoService lectorArchivoService;
 
@@ -14,9 +14,19 @@ namespace ConsoleApp1.Eventos.Controllers
             this.lectorArchivoService = lectorArchivoService;
         }
 
-        public List<string []> leerArchivo(string ruta)
+        public List<string[]> obtenerDatosArchivo(string ruta)
         {
-            return lectorArchivoService.leerArchivo(ruta);
+            List<string[]> datos = null;
+            try
+            {
+                datos = lectorArchivoService.leerArchivo(ruta);
+            }
+            catch (Exception)
+            {
+                throw new Exception("No existe el archivo en la ruta especificada");
+            }
+
+            return datos;
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using ConsoleApp1.Eventos.Models;
-using ConsoleApp1.Eventos.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ConsoleApp1.Eventos.Models;
+using ConsoleApp1.Eventos.Services;
 
 namespace ConsoleApp1.Eventos.Controllers
 {
-    class DatosParseEventosController
+    public class DatosParseEventosController : IDatosParseEventosController
     {
         IDatosParseEventosService datosParseEventosService;
 
@@ -15,10 +15,9 @@ namespace ConsoleApp1.Eventos.Controllers
             this.datosParseEventosService = datosParseEventosService;
         }
 
-        public List<Evento> datosToEventos(List<string[]> datos)
+        public List<Evento> obtieneEventosArchivo(List<string[]> datos)
         {
             return datosParseEventosService.datosToEventos(datos);
         }
-
     }
 }

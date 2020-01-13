@@ -5,7 +5,7 @@ using ConsoleApp1.Eventos.Models;
 
 namespace ConsoleApp1.Eventos.Services
 {
-    class DatosParseEventosService : IDatosParseEventosService
+    public class DatosParseEventosService : IDatosParseEventosService
     {
         private IValidadorArchivoEventosService validador;
 

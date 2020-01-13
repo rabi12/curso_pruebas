@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Models
 {
-    class Evento
+    public class Evento
     {
         string nombre;
         DateTime fecha;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Services
 {
-    class CalculadorDiferenciaFechasEnHoras : ICalculadorDiferenciaFechasEnHoras
+    public class CalculadorDiferenciaFechasEnHoras : ICalculadorDiferenciaFechasEnHoras
     {
         public int calcularDiferencia(DateTime fecha1, DateTime fecha2)
         {

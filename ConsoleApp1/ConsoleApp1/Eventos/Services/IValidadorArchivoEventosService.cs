@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Services
 {
-    interface IValidadorArchivoEventosService
+    public interface IValidadorArchivoEventosService
     {
          bool validarPlantillaEventos(List<string []> datos);
     }

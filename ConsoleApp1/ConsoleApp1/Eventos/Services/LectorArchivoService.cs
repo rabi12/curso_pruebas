@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Services
 {
-    class LectorArchivoService : ILectorArchivoService
+    public class LectorArchivoService : ILectorArchivoService
     {
         public List<string[]> leerArchivo(string ruta)
         {

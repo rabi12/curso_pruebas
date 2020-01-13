@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Services
 {
-    interface ICalculadorDiferenciaFechasEnMinutos
+    public interface ICalculadorDiferenciaFechasEnMinutos
     {
         int calcularDiferencia(DateTime fecha1, DateTime fecha2);
     }

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ConsoleApp1.Eventos.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1.Eventos.Services
 {
-    interface IDatosParseEventosService
+    public interface IDatosParseEventosService
     {
-        List<Models.Evento> datosToEventos(List<string[]> datos);
+         List<Evento> datosToEventos(List<string[]> datos);
     }
 }

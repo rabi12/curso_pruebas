@@ -6,72 +6,33 @@ using System.Text;
 
 namespace ConsoleApp1.Eventos.Controllers
 {
-    class EventoController
+    public class EventoController: IEventoController
     {
-        ILectorArchivoService lectorArchivoService;
-        IDatosParseEventosService datosParseEventosService;
         ICalculadorDiferenciaFechasEnMeses calculadorMeses;
         ICalculadorDiferenciaFechasEnDias calculadorDias;
         ICalculadorDiferenciaFechasEnHoras calculadorHoras;
         ICalculadorDiferenciaFechasEnMinutos calculadorMinutos;
 
-        public EventoController(ILectorArchivoService lectorArchivoService, IDatosParseEventosService datosParseEventosService, 
+        public Func<DateTime> proveedorFecha { get; set; }
+
+        public EventoController( 
             ICalculadorDiferenciaFechasEnMeses calculadorMeses, ICalculadorDiferenciaFechasEnDias calculadorDias, 
             ICalculadorDiferenciaFechasEnHoras calculadorHoras, ICalculadorDiferenciaFechasEnMinutos calculadorMinutos)
         {
-            this.lectorArchivoService = lectorArchivoService;
-            this.datosParseEventosService = datosParseEventosService;
+            this.proveedorFecha = () => DateTime.Now;
             this.calculadorMeses = calculadorMeses;
             this.calculadorDias = calculadorDias;
             this.calculadorHoras= calculadorHoras;
             this.calculadorMinutos = calculadorMinutos;
         }
 
-        public List<string> getMensajesEventosArchivo(string ruta)
-        {
-            try
-            {
-                List<Evento> eventos = this.obtieneEventosArchivo(ruta);
-
-                return obtieneMensajesEventos(eventos);
-            }
-            catch (Exception e)
-            {
-                List<string> listaMensaje = new List<string>();
-                listaMensaje.Add(e.Message);
-                return listaMensaje;
-            }
-        }
-
-        private List<Evento> obtieneEventosArchivo(string ruta)
-        {
-            List<string[]> datosArchivo=obtenerDatosArchivo(ruta);
-
-            return datosParseEventosService.datosToEventos(datosArchivo);
-        }
-
-        private List<string[]> obtenerDatosArchivo(string ruta)
-        {
-            List<string[]> datos = null;
-            try
-            {
-                datos=lectorArchivoService.leerArchivo(ruta);
-            }
-            catch (Exception)
-            {
-                throw new Exception("No existe el archivo en la ruta especificada");
-            }
-
-            return datos; 
-        }
-
-        private List<string> obtieneMensajesEventos(List<Evento> eventos)
+        public List<string> obtenerMensajesEventos(List<Evento> eventos)
         {
             List<string> listaAvisoEventos= new List<string>();
 
             foreach(var evento in eventos)
             {
-                listaAvisoEventos.Add(obtenerMensajeEvento(evento, DateTime.Now));
+                listaAvisoEventos.Add(obtenerMensajeEvento(evento, proveedorFecha()));
             }
 
             return listaAvisoEventos;
